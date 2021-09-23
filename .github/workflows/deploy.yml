@@ -53,8 +53,8 @@ jobs:
         password: ${{ secrets.PASSWORD }}
         port: 22
         script: |
-          cd 替换成你的服务器项目文件夹的绝对路径
-          wget 替换成你的github项目地址 -O release.tgz
+          cd /usr/local/share/applications
+          wget https://github.com/qixiaobro/uncode-nuxt -O release.tgz
           tar zxvf release.tgz
           npm install --production
           pm2 start
