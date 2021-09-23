@@ -54,7 +54,9 @@ jobs:
         port: 22
         script: |
           cd /usr/local/share/applications
-          wget https://github.com/qixiaobro/uncode-nuxt -O release.tgz
+          cd uncode-nuxt
+          rm -f *
+          wget https://github.com/qixiaobro/uncode-nuxt/releases/latest/download/release.tgz -O r.tgz
           tar zxvf release.tgz
           npm install --production
           pm2 start
