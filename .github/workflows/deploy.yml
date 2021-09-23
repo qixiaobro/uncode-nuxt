@@ -1,4 +1,4 @@
-name: Publish And Deploy Demo
+name: Publish And Deploy
 on:
   push:
     tags:
@@ -56,7 +56,7 @@ jobs:
           cd /usr/local/share/applications
           cd uncode-nuxt
           rm -f *
-          wget https://github.com/qixiaobro/uncode-nuxt/releases/latest/download/release.tgz -O r.tgz
+          wget https://github.com/qixiaobro/uncode-nuxt/releases/latest/download/release.tgz -O release.tgz
           tar zxvf release.tgz
           npm install --production
           pm2 start
