@@ -51,7 +51,7 @@ jobs:
         host: ${{ secrets.HOST }}
         username: ${{ secrets.USERNAME }}
         password: ${{ secrets.PASSWORD }}
-        port: ${{ secrets.PORT }}
+        port: 22
         script: |
           cd 替换成你的服务器项目文件夹的绝对路径
           wget 替换成你的github项目地址 -O release.tgz
