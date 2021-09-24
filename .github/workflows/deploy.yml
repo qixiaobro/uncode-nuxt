@@ -56,7 +56,7 @@ jobs:
           cd /usr/local/share/applications
           cd uncode-nuxt
           rm -f *
-          wget https://github.com/qixiaobro/uncode-nuxt/releases/latest/download/release.tgz -O release.tgz
+          wget https://github.com/qixiaobro/uncode-nuxt/releases/download/${{ github.ref }}/release.tgz -O release.tgz
           tar zxvf release.tgz
           npm install --production
           pm2 start
