@@ -20,6 +20,13 @@ jobs:
     - run: npm run build
     - run: tar -zcvf release.tgz .nuxt static nuxt.config.js package.json package-lock.json ecosystem.config.js
 
+    - name: get Version
+      id: version
+      uses: ashley-taylor/read-json-property-action@v1.0
+      with:
+        path: ./package.json
+        property: version
+
     # 发布 Release
     - name: Create Release
       id: create_release
@@ -28,7 +35,7 @@ jobs:
         GITHUB_TOKEN: ${{ secrets.TOKEN }}
       with:
         tag_name: ${{ github.ref }}
-        release_name: Release ${{ github.ref }}
+        release_name: Release ${{steps.version.outputs.value}}
         draft: false
         prerelease: false
 
@@ -56,7 +63,7 @@ jobs:
           cd /usr/local/share/applications
           cd uncode-nuxt
           rm -f *
-          wget https://github.com/qixiaobro/uncode-nuxt/releases/download/${{ github.ref }}/release.tgz -O release.tgz
+          wget https://github.com/qixiaobro/uncode-nuxt/releases/download/v${{steps.version.outputs.value}}/release.tgz -O release.tgz
           tar zxvf release.tgz
           npm install --production
           pm2 start
