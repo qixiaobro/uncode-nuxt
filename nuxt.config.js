@@ -13,14 +13,35 @@ export default {
     ],
     link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }],
   },
+  router: {
+    linkActiveClass: 'active',
+    // 自定义路由规则
+    extendRoutes(routes, resolve) {
+      // 清除 Nuxt.js 基于pages目录默认生成的路由表规则
+      routes.splice(0)
+      routes.push(
+        ...[
+          {
+            path: '/',
+            component: resolve(__dirname, 'pages/layout/'),
+            children: [
+              {
+                path: '', // 默认子路由
+                name: 'home',
+                component: resolve(__dirname, 'pages/home/'),
+              },
+            ],
+          },
+        ]
+      )
+    },
+  },
 
   // Global CSS: https://go.nuxtjs.dev/config-css
-  css: [],
+  css: [{ src: '@/assets/scss/main.scss', lang: 'scss' }],
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
-  plugins: [
-    '~/plugins/api'
-  ],
+  plugins: ['~/plugins/api'],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
   components: true,
@@ -36,10 +57,14 @@ export default {
     // https://go.nuxtjs.dev/bootstrap
     'bootstrap-vue/nuxt',
     '@nuxtjs/axios',
+    '@nuxtjs/style-resources',
   ],
+  styleResources: {
+    scss: ['./assets/scss/main.scss'],
+  },
 
   axios: {
-    proxy: true
+    proxy: true,
   },
 
   // Build Configuration: https://go.nuxtjs.dev/config-build

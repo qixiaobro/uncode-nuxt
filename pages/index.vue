@@ -1,5 +1,5 @@
 <template>
-  <div>{{res}}</div>
+  <div class="bg">{{res}}</div>
 </template>
 
 <script>
@@ -10,3 +10,10 @@ export default {
   }
 }
 </script>
+<style lang="scss" scoped>
+.bg{
+  width: 100px;
+  height: 100px;
+  background: $background-color;
+}
+</style>
